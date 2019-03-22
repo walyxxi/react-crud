@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <title>Phone Book</title>
+</head>
+<style>
+    body {
+        margin: 0 auto;
+        max-width: 950px;
+        padding: 0 20px;
+    }
+
+    .container {
+        border: 1px solid #d9d9d9;
+        background-color: #f2f2f2;
+        border-radius: 3px;
+        padding: 10px;
+        margin: 5px 0;
+    }
+</style>
+
+<body>
+    <div class="container text-center">
+        <h4>
+            <font><b>Phone Book Apps</b></font>
+        </h4>
+    </div>
+    <div style="height: 5px;"><br /></div>
+    <button type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Add</button>
+    <div class="card">
+        <div class="card-header">Adding Form</div>
+        <div class="card-body">
+            <form class="form-inline" action="">
+                <div class="form-group">
+                    <label class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" placeholder="Name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-form-label">Phone</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" placeholder="081999123XXX" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Save</button>
+                &nbsp;
+                <button type="submit" class="btn btn-warning"><i class="fas fa-ban"></i> Cancel</button>
+            </form>
+        </div>
+    </div>
+    <div style="height: 10px;"><br /></div>
+    <div class="card">
+        <div class="card-header">Search Form</div>
+        <div class="card-body">
+            <form class="form-inline" action="">
+                <div class="form-group">
+                    <label class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" placeholder="Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-form-label">Phone</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" placeholder="081999123XXX">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div style="height: 10px;"><br /></div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th style="text-align:center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Waliyul Ardy</td>
+                <td>082236857567</td>
+                <td style="text-align:center">
+                    <button type="submit" class="btn btn-info"><i class="fas fa-edit"></i> Edit</button>
+                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td><input type="text" class="form-control" placeholder="Name"></td>
+                <td><input type="text" class="form-control" placeholder="081999123XXX"></td>
+                <td style="text-align:center">
+                    <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Save</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
