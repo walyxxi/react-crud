@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
 export default class PhoneFormAdd extends Component {
-    constructor(props) {
-        super(props)
+    constructor(props, context) {
+        super(props, context)
         this.state = {
-            addButton: true,
-            name: '',
-            phone: '',
+            adding: false,
+            name: this.props.name || '',
+            phone: this.props.phone || ''
         }
         this.handleButtonAdd = this.handleButtonAdd.bind(this)
         this.handleButtonCancel = this.handleButtonCancel.bind(this)
@@ -16,11 +16,11 @@ export default class PhoneFormAdd extends Component {
     }
 
     handleButtonAdd() {
-        this.setState({ addButton: false })
+        this.setState({ adding: true })
     }
 
     handleButtonCancel() {
-        this.setState({ addButton: true })
+        this.setState({ adding: false })
     }
 
     handleNameChange(e) {
@@ -32,28 +32,21 @@ export default class PhoneFormAdd extends Component {
     }
 
     handleSubmit(e) {
-        if (this.state.name && this.state.phone) {
-            const item = {
-                id: Date.now(),
-                name: this.state.name,
-                phone: this.state.phone
-            }
-            this.props.postPhoneBook(item)
-
-            this.setState({ name: '', phone: '' })
-            e.preventDefault()
+        e.preventDefault()
+        var name = this.state.name.trim()
+        var phone = this.state.phone.trim()
+        if (!name || !phone) {
+            return
         }
+        this.props.onSave(name, phone)
+        this.setState({ name: '', phone: '', adding: false })
     }
 
     render() {
         return (
             <div>
                 {
-                    this.state.addButton ?
-                    <button type="button" className="btn btn-primary" onClick={this.handleButtonAdd}>
-                    <i className="fas fa-plus"></i> Add
-                    </button>
-                    :
+                    this.state.adding ?
                     <div className="card">
                         <div className="card-header">Adding Form</div>
                         <div className="card-body">
@@ -72,12 +65,20 @@ export default class PhoneFormAdd extends Component {
                                         onChange={this.handlePhoneChange} value={this.state.phone} required />
                                     </div>
                                 </div>
-                                <button type="submit" className="btn btn-success"><i className="fas fa-save"></i> Save</button>
+                                <button type="submit" className="btn btn-success">
+                                    <i className="fas fa-save"></i> Save
+                                </button>
                                 &nbsp;
-                                <button type="button" className="btn btn-warning" onClick={this.handleButtonCancel}><i className="fas fa-ban"></i> Cancel</button>
+                                <button type="button" className="btn btn-warning" onClick={this.handleButtonCancel}>
+                                    <i className="fas fa-ban"></i> Cancel
+                                </button>
                             </form>
                         </div>
-                    </div>
+                    </div> 
+                    :
+                    <button type="button" className="btn btn-primary" onClick={this.handleButtonAdd}>
+                        <i className="fas fa-plus"></i> Add
+                    </button>
                 }
             </div>
         )

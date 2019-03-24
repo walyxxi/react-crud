@@ -1,38 +1,17 @@
 import React, { Component } from 'react';
 import PhoneFormAdd from './PhoneFormAdd';
 import PhoneDataList from './PhoneDataList';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as PhoneBookActions from '../actions';
 
-export default class PhoneBox extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            data: [{ id: 1553258696357, name: 'Waliyul Ardy', phone: '082236857567'}, { id: 1553258696358, name: 'Khusni Jafar', phone: '082235890324' }]
-        }
-        this.postPhoneBook = this.postPhoneBook.bind(this)
-        this.deletePhoneBook = this.deletePhoneBook.bind(this)
-        this.updatePhoneBook = this.updatePhoneBook.bind(this)
-    }
-
-    postPhoneBook(item) {
-        this.setState(state => ({
-            data: [...state.data, item]
-        }))
-    }
-
-    deletePhoneBook(id) {
-        this.setState(state => ({
-            data: state.data.filter((item) => item.id !== id)
-        }))
-    }
-
-    updatePhoneBook(id, newData) {
-        console.log(id, newData);
-        this.setState(state => ({
-            data: state.data.map(item => item.id === id ? Object.assign({}, item, {name: newData.name, phone: newData.phone}) : item)
-        }))
+class PhoneBox extends Component {
+    componentDidMount() {
+        this.props.actions.loadPhoneBook();
     }
 
     render() {
+        const { data, actions } = this.props
         return (
             <div>
                 <div className="container text-center">
@@ -41,10 +20,27 @@ export default class PhoneBox extends Component {
                     </h4>
                 </div>
                 <div style={{ height: '5px' }}><br /></div>
-                <PhoneFormAdd postPhoneBook={this.postPhoneBook} />
+                <PhoneFormAdd name="" phone="" onSave={actions.addPhoneBook} />
                 <div style={{ height: '10px' }}><br /></div>
-                <PhoneDataList datas={this.state.data} updatePhoneBook={this.updatePhoneBook} deletePhoneBook={this.deletePhoneBook} />
+                <PhoneDataList data={data} actions={actions} />
             </div>
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        data: state.data
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(PhoneBookActions, dispatch)
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(PhoneBox)

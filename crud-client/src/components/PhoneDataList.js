@@ -26,29 +26,27 @@ export default class PhoneFormSearch extends Component {
     }
 
     render() {
-        const { datas, deletePhoneBook, updatePhoneBook } = this.props
+        const { data, actions } = this.props
 
         var name = this.state.name.trim().toLowerCase()
         var phone = this.state.phone.trim().toLowerCase()
 
-        var filterData = datas
+        var filterData = data
         
         if (name !== '' && phone !== '') {
-            filterData = datas.filter(item => item.name.toLowerCase().startsWith(name) && item.phone.toLowerCase().startsWith(phone))
+            filterData = data.filter(item => item.name.toLowerCase().startsWith(name) && item.phone.toLowerCase().startsWith(phone))
         } else if (name !== '') {
-            filterData = datas.filter(item => item.name.toLowerCase().startsWith(name))
+            filterData = data.filter(item => item.name.toLowerCase().startsWith(name))
         } else if (phone !== '') {
-            filterData = datas.filter(item => item.phone.toLowerCase().startsWith(phone))
+            filterData = data.filter(item => item.phone.toLowerCase().startsWith(phone))
         }
 
-        let dataList = filterData.map((data, index) => {
+        let dataList = filterData.map((data) => {
             return (
                 <PhoneData
                     key={data.id}
-                    index={index+1}
                     data={data}
-                    onDelete={() => deletePhoneBook(data.id)}
-                    updatePhone={updatePhoneBook}
+                    {...actions}
                 />
             )
         })
